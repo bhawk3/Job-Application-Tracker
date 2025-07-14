@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>PageTitle</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!-- Link to CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">App Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+        </div>
+    </nav>
+    <!-- ======= Hero Section ======= -->
+    <main id="hero">
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Job Application Tracker</h1>
+
+
+                    <!-- There could be an issue with the form submitting but not sure -->
+                <form class="job-form hidden" id="job-form">
+                    <label>Job Title:</label><br>
+                    <input type="text" name="jobtitle" id="job-title-input"><br>
+                    <label>Company Name:</label><br>
+                    <input type="text" id="company-name-input"><br>
+                    <label>Date Applied:</label><br>
+                    <input type="date" id="date-applied-input"><br>
+                    <label>Activity:</label><br>
+                    <input type="text" id="activity-input"><br>
+                    
+                    <button id="add-job-application-btn" class="btn btn-primary btn-lg px-4 mt-2 me-md-2" type="submit">Add Job Application</button>                
+                </form>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="toggleJobForm()">Add Job</button>
+                    </div>
+            </div>
+        </div>
+    </main>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+<!-- Link to JS File -->
+<script src="script.js" ></script>
+
+</body>
+
+</html>
