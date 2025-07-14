@@ -44,12 +44,39 @@
                     <label>Activity:</label><br>
                     <input type="text" id="activity-input"><br>
                     
-                    <button id="add-job-application-btn" class="btn btn-primary btn-lg px-4 mt-2 me-md-2" type="submit">Add Job Application</button>                
+                    <button id="add-job-application-btn" class="btn btn-primary btn-lg px-4 mt-2 me-md-2" type="submit">Add Job Application</button><br>
+                    <button class="btn btn-secondary btn-lg px-4 mt-2 me-md-2" id="Cancel" type="click">Cancel</button>                
                 </form>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="toggleJobForm()">Add Job</button>
+                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" id="add-job-btn">Add Job</button>
                     </div>
+
+                    <table>
+  <thead>
+    <tr>
+      <th>Job Title</th>
+      <th>Company</th>
+      <th>Date Applied</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Frontend Developer</td>
+      <td>OpenAI</td>
+      <td>2025-07-03</td>
+      <td>Interview Scheduled</td>
+      <td>
+        <button id="edit-btn">Edit</button>
+        <button id="delete=btn">Delete</button>
+      </td>
+    </tr>
+    <!-- More rows... -->
+  </tbody>
+</table>
+
             </div>
         </div>
     </main>
