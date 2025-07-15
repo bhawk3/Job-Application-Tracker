@@ -35,17 +35,20 @@
 
                     <!-- There could be an issue with the form submitting but not sure -->
                 <form class="job-form hidden" id="job-form">
-                    <label>Job Title:</label><br>
-                    <input type="text" name="jobtitle" id="job-title-input"><br>
-                    <label>Company Name:</label><br>
-                    <input type="text" id="company-name-input"><br>
-                    <label>Date Applied:</label><br>
-                    <input type="date" id="date-applied-input"><br>
-                    <label>Activity:</label><br>
-                    <input type="text" id="activity-input"><br>
+                    <div id="job-form-content">
+                    <label for="job-title-input">Job Title:</label><br>
+                    <input type="text" name="jobtitle" id="job-title-input"/><br>
+                    <label for="company-name-input">Company Name:</label><br>
+                    <input type="text" name="companyName" id="company-name-input"/><br>
+                    <label for="date-applied-input">Date Applied:</label><br>
+                    <input type="date" name="dateApplied" id="date-applied-input"/><br>
+                    <label for="activity-input">Activity:</label><br>
+                    <!-- This actually should probably be a <select> instead of <input> -->
+                    <input type="text" name="activityInput" id="activity-input"/><br>
                     
                     <button id="add-job-application-btn" class="btn btn-primary btn-lg px-4 mt-2 me-md-2" type="submit">Add Job Application</button><br>
-                    <button class="btn btn-secondary btn-lg px-4 mt-2 me-md-2" id="Cancel" type="click">Cancel</button>                
+                    <button class="btn btn-secondary btn-lg px-4 mt-2 me-md-2" id="cancel-form-btn" type="button">Cancel</button>                
+                    </div>
                 </form>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
