@@ -17,13 +17,30 @@ jobForm.classList.toggle("hidden")
 const jobData = []
 
 // This is the submit btn for the add new jobs form
-addJobApplicationBtn.addEventListener("submit", (e) =>
+jobForm.addEventListener("submit", (e) => {
 e.preventDefault()
 
-
+const jobInfo = {
+    jobTitle: jobtitleInput.value,
+    companyName: companyNameInput.value,
+    dateApplied: dateAppliedInput.value,
+    activity: activityInput.value
+}
+jobData.push(jobInfo)
+console.log(jobData)
 
 // The table data can be input through a template literal by adding a tr
-)
+})
+
+// Check if the form data is empty
+const addOrUpdateJob = () => {
+    if (jobtitleInput.value == " ") {
+        alert("Please add a job")
+        return;
+    }
+}
+
+const jobArrayIndex = jobData.findIndex()
 
 // Add Close Form btn functionality
 cancelFormBtn.addEventListener("click", () => 
