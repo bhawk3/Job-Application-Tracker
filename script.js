@@ -19,33 +19,49 @@ const jobData = []
 // This is the submit btn for the add new jobs form
 jobForm.addEventListener("submit", (e) => {
 e.preventDefault()
-
-const jobInfo = {
-    jobTitle: jobtitleInput.value,
-    companyName: companyNameInput.value,
-    dateApplied: dateAppliedInput.value,
-    activity: activityInput.value
-}
-jobData.push(jobInfo)
-console.log(jobData)
+addOrUpdateJob()
 
 // The table data can be input through a template literal by adding a tr
 })
 
 // Check if the form data is empty
 const addOrUpdateJob = () => {
-    if (jobtitleInput.value == " ") {
-        alert("Please add a job")
+    if (!jobtitleInput.value.trim()) {
+        alert("Please add a job title")
         return;
     }
+
+    const jobInfo = {
+        jobTitle: jobtitleInput.value,
+        companyName: companyNameInput.value,
+        dateApplied: dateAppliedInput.value,
+        activity: activityInput.value
+    }
+
+    jobData.push(jobInfo)
+    console.log(jobData)
+
+    // Reset form after adding
+    jobForm.reset()
+    jobForm.classList.add("hidden")
 }
 
-const jobArrayIndex = jobData.findIndex()
+//This is needed but didn't get to this yet
+//const jobArrayIndex = jobData.findIndex()
 
 // Add Close Form btn functionality
-cancelFormBtn.addEventListener("click", () => 
-    jobForm.classList.toggle("hidden")
-)
+cancelFormBtn.addEventListener("click", () => {
+ /*const formInputsContainValues = jobTitle.value || companyName.value || dateApplied.value;
+  const formInputValuesUpdated = jobTitle.value !== companyName.value || dateApplied.value !== currentTask.date;
+
+  if (formInputsContainValues && formInputValuesUpdated) {
+    confirmCloseDialog.showModal();
+  } else {
+    reset();
+  }*/
+    jobForm.reset()
+   jobForm.classList.add("hidden")
+})
 
 // Add Edit btn functionality
 
