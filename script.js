@@ -8,6 +8,7 @@ const addJobBtn = document.getElementById("add-job-btn")
 const editBtn = document.getElementById("edit-btn")
 const deleteBtn = document.getElementById("delete-btn")
 const cancelFormBtn = document.getElementById("cancel-form-btn")
+const displayedJobInfo = document.getElementById("displayed-job-info")
 
 // Toggle the form to add new jobs to the list
 addJobBtn.addEventListener("click", () =>
@@ -15,6 +16,7 @@ jobForm.classList.toggle("hidden")
 )
 
 const jobData = []
+const currentJob = {}
 
 // This is the submit btn for the add new jobs form
 jobForm.addEventListener("submit", (e) => {
@@ -32,6 +34,7 @@ const addOrUpdateJob = () => {
     }
 
     const jobInfo = {
+        id: `${jobtitleInput.value.toLowerCase().split(" ").join("-") }`,
         jobTitle: jobtitleInput.value,
         companyName: companyNameInput.value,
         dateApplied: dateAppliedInput.value,
@@ -46,19 +49,39 @@ const addOrUpdateJob = () => {
     jobForm.classList.add("hidden")
 }
 
-//This is needed but didn't get to this yet
-//const jobArrayIndex = jobData.findIndex()
+const jobArrayIndex = jobData.findIndex((job) => job.id === currentJob.id)
+
+if (jobArrayIndex === -1) {
+  jobData.unshift(jobArrayIndex)
+} else {
+  jobData[jobArrayIndex] = jobInfo
+}
+
+const postDataToPage = () => {
+//Left off here 07/23
+  jobData.forEach((id, jobTitle, companyName, dateApplied, activity) => {
+    (displayedJobInfo.innerHTML += 
+      `
+      <tbody>
+        <tr>
+          <td>${id}</td>
+          <td>${jobTitle}</td>
+          <td>${companyName}</td>
+          <td>${dateApplied}</td>
+          <td>${activity}</td>
+          <td>
+            <button id="edit-btn">Edit</button>
+            <button id="delete=btn">Delete</button>
+          </td>
+
+        </tr>
+      </tbody>
+      `)
+  })
+}
 
 // Add Close Form btn functionality
 cancelFormBtn.addEventListener("click", () => {
- /*const formInputsContainValues = jobTitle.value || companyName.value || dateApplied.value;
-  const formInputValuesUpdated = jobTitle.value !== companyName.value || dateApplied.value !== currentTask.date;
-
-  if (formInputsContainValues && formInputValuesUpdated) {
-    confirmCloseDialog.showModal();
-  } else {
-    reset();
-  }*/
     jobForm.reset()
    jobForm.classList.add("hidden")
 })
@@ -69,5 +92,4 @@ cancelFormBtn.addEventListener("click", () => {
 // Add Delete btn functionality
 
 
-// Create the form data functionality
 
