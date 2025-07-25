@@ -5,8 +5,8 @@ const companyNameInput = document.getElementById("company-name-input")
 const dateAppliedInput = document.getElementById("date-applied-input")
 const activityInput = document.getElementById("activity-input")
 const addJobBtn = document.getElementById("add-job-btn")
-const editBtn = document.getElementById("edit-btn")
-const deleteBtn = document.getElementById("delete-btn")
+const editBtn = document.getElementsByClassName("edit-btn")
+const deleteBtn = document.getElementsByClassName("delete-btn")
 const cancelFormBtn = document.getElementById("cancel-form-btn")
 const displayedJobInfo = document.getElementById("displayed-job-info")
 
@@ -41,42 +41,42 @@ const addOrUpdateJob = () => {
         activity: activityInput.value
     }
 
-    jobData.push(jobInfo)
+    const jobArrayIndex = jobData.findIndex((job) => job.id === jobInfo.id)
+
+    if (jobArrayIndex === -1) {
+  jobData.unshift(jobInfo)
+} else {
+  jobData[jobArrayIndex] = jobInfo
+}
+
+//    jobData.push(jobInfo)
     console.log(jobData)
+    postDataToPage()
+
 
     // Reset form after adding
     jobForm.reset()
     jobForm.classList.add("hidden")
 }
 
-const jobArrayIndex = jobData.findIndex((job) => job.id === currentJob.id)
-
-if (jobArrayIndex === -1) {
-  jobData.unshift(jobArrayIndex)
-} else {
-  jobData[jobArrayIndex] = jobInfo
-}
-
 const postDataToPage = () => {
 //Left off here 07/23
-  jobData.forEach((id, jobTitle, companyName, dateApplied, activity) => {
+displayedJobInfo.innerHTML = ""
+  
+jobData.forEach((job, index) => {
     (displayedJobInfo.innerHTML += 
-      `
-      <tbody>
-        <tr>
-          <td>${id}</td>
-          <td>${jobTitle}</td>
-          <td>${companyName}</td>
-          <td>${dateApplied}</td>
-          <td>${activity}</td>
+      ` <tr>
+          <td>${job.id}</td>
+          <td>${job.jobTitle}</td>
+          <td>${job.companyName}</td>
+          <td>${job.dateApplied}</td>
+          <td>${job.activity}</td>
           <td>
-            <button id="edit-btn">Edit</button>
-            <button id="delete=btn">Delete</button>
+            <button id="edit-btn" >Edit</button>
+            <button id="delete=btn" data-index="${index}">Delete</button>
           </td>
-
-        </tr>
-      </tbody>
-      `)
+        </tr>`
+    ); 
   })
 }
 
@@ -90,6 +90,12 @@ cancelFormBtn.addEventListener("click", () => {
 
 
 // Add Delete btn functionality
+deleteBtn.addEventListener("click", () => {
 
+if (target.classList.contains('delete-btn')) {
+    const indexToDelete = parseInt(event.target.dataset.index, 10);
+    jobData.splice(indexToDelete, 1);  // Remove that one job from the array
+    postDataToPage();
+}})
 
 
