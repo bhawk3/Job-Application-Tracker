@@ -6,7 +6,8 @@ const dateAppliedInput = document.getElementById("date-applied-input")
 const activityInput = document.getElementById("activity-input")
 const addJobBtn = document.getElementById("add-job-btn")
 const editBtn = document.getElementsByClassName("edit-btn")
-const deleteBtn = document.getElementsByClassName("delete-btn")
+//const deleteBtn = document.getElementsByClassName("delete-btn")
+const deleteBtn = document.querySelector(".delete-btn")
 const cancelFormBtn = document.getElementById("cancel-form-btn")
 const displayedJobInfo = document.getElementById("displayed-job-info")
 
@@ -66,14 +67,14 @@ displayedJobInfo.innerHTML = ""
 jobData.forEach((job, index) => {
     (displayedJobInfo.innerHTML += 
       ` <tr>
-          <td>${job.id}</td>
+          <!--<td>${job.id}</td>-->
           <td>${job.jobTitle}</td>
           <td>${job.companyName}</td>
           <td>${job.dateApplied}</td>
           <td>${job.activity}</td>
           <td>
-            <button id="edit-btn" >Edit</button>
-            <button id="delete=btn" data-index="${index}">Delete</button>
+            <button class="edit-btn" >Edit</button>
+            <button class="delete-btn" data-index="${index}">Delete</button>
           </td>
         </tr>`
     ); 
@@ -90,12 +91,19 @@ cancelFormBtn.addEventListener("click", () => {
 
 
 // Add Delete btn functionality
-deleteBtn.addEventListener("click", () => {
+displayedJobInfo.addEventListener("click", (e) => {
 
-if (target.classList.contains('delete-btn')) {
-    const indexToDelete = parseInt(event.target.dataset.index, 10);
+  if (e.target.classList.contains('delete-btn')) {
+    const indexToDelete = parseInt(e.target.dataset.index, 10);
     jobData.splice(indexToDelete, 1);  // Remove that one job from the array
     postDataToPage();
-}})
+}
+
+if (e.target.classList.contains("edit-btn")){
+  
+
+}
+
+})
 
 
