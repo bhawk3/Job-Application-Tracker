@@ -17,7 +17,7 @@ jobForm.classList.toggle("hidden")
 )
 
 const jobData = []
-const currentJob = {}
+//const currentJob = {}
 
 // This is the submit btn for the add new jobs form
 jobForm.addEventListener("submit", (e) => {
@@ -89,7 +89,6 @@ cancelFormBtn.addEventListener("click", () => {
 
 // Add Edit btn functionality
 
-
 // Add Delete btn functionality
 displayedJobInfo.addEventListener("click", (e) => {
 
@@ -100,7 +99,20 @@ displayedJobInfo.addEventListener("click", (e) => {
 }
 
 if (e.target.classList.contains("edit-btn")){
-  
+jobForm.classList.toggle("hidden")  
+
+addJobApplicationBtn.innerText = "Update Job"
+
+const jobArrIndex = jobData.findIndex(
+    (item) => item.id === buttonEl.parentElement.id
+  );
+
+updatedJobInfo = jobData[jobArrIndex]
+
+jobTitle.value = updatedJobInfo.jobTitle
+companyName.value = updateJobInfo.companyName
+dateApplied.value = updatedJobInfo.dateApplied
+activity.value = updatedJobInfo.activity
 
 }
 
