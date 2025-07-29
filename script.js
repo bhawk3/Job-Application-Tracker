@@ -11,20 +11,19 @@ const deleteBtn = document.querySelector(".delete-btn")
 const cancelFormBtn = document.getElementById("cancel-form-btn")
 const displayedJobInfo = document.getElementById("displayed-job-info")
 
+const jobData = []
+let currentEditIndex = null
+
 // Toggle the form to add new jobs to the list
 addJobBtn.addEventListener("click", () =>
 jobForm.classList.toggle("hidden")
 )
 
-const jobData = []
-//const currentJob = {}
-
 // This is the submit btn for the add new jobs form
 jobForm.addEventListener("submit", (e) => {
 e.preventDefault()
 addOrUpdateJob()
-
-// The table data can be input through a template literal by adding a tr
+currentEditIndex = null
 })
 
 // Check if the form data is empty
@@ -42,13 +41,11 @@ const addOrUpdateJob = () => {
         activity: activityInput.value
     }
 
-    const jobArrayIndex = jobData.findIndex((job) => job.id === jobInfo.id)
-
-    if (jobArrayIndex === -1) {
-  jobData.unshift(jobInfo)
-} else {
-  jobData[jobArrayIndex] = jobInfo
-}
+  if (currentEditIndex === -1) {
+    jobData.unshift(jobInfo)
+  } else {
+    jobData[currentEditIndex] = jobInfo
+  }
 
 //    jobData.push(jobInfo)
     console.log(jobData)
@@ -73,7 +70,7 @@ jobData.forEach((job, index) => {
           <td>${job.dateApplied}</td>
           <td>${job.activity}</td>
           <td>
-            <button class="edit-btn" >Edit</button>
+            <button class="edit-btn" data-index="${job.id}" >Edit</button>
             <button class="delete-btn" data-index="${index}">Delete</button>
           </td>
         </tr>`
@@ -85,6 +82,7 @@ jobData.forEach((job, index) => {
 cancelFormBtn.addEventListener("click", () => {
     jobForm.reset()
    jobForm.classList.add("hidden")
+   currentEditIndex = null;
 })
 
 // Add Edit btn functionality
@@ -103,16 +101,21 @@ jobForm.classList.toggle("hidden")
 
 addJobApplicationBtn.innerText = "Update Job"
 
-const jobArrIndex = jobData.findIndex(
-    (item) => item.id === buttonEl.parentElement.id
-  );
+    const jobArrIndex = jobData.findIndex((job) => job.id === e.target.dataset.id);
 
-updatedJobInfo = jobData[jobArrIndex]
+  //const editIndex = parseInt(e.target.dataset.index, 10);
+if (jobArrIndex === -1) {
 
-jobTitle.value = updatedJobInfo.jobTitle
-companyName.value = updateJobInfo.companyName
-dateApplied.value = updatedJobInfo.dateApplied
-activity.value = updatedJobInfo.activity
+  updatedJobInfo = jobData[jobArrIndex]
+
+  jobTitle.value = updatedJobInfo.jobTitle
+  companyName.value = updatedJobInfo.companyName
+  dateApplied.value = updatedJobInfo.dateApplied
+  activity.value = updatedJobInfo.activity
+
+  currentEditIndex = jobArrIndex
+}
+
 
 }
 
