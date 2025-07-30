@@ -5,9 +5,6 @@ const companyNameInput = document.getElementById("company-name-input")
 const dateAppliedInput = document.getElementById("date-applied-input")
 const activityInput = document.getElementById("activity-input")
 const addJobBtn = document.getElementById("add-job-btn")
-const editBtn = document.getElementsByClassName("edit-btn")
-//const deleteBtn = document.getElementsByClassName("delete-btn")
-const deleteBtn = document.querySelector(".delete-btn")
 const cancelFormBtn = document.getElementById("cancel-form-btn")
 const displayedJobInfo = document.getElementById("displayed-job-info")
 
@@ -41,7 +38,7 @@ const addOrUpdateJob = () => {
         activity: activityInput.value
     }
 
-  if (currentEditIndex === -1) {
+  if (currentEditIndex === null) {
     jobData.unshift(jobInfo)
   } else {
     jobData[currentEditIndex] = jobInfo
@@ -70,7 +67,7 @@ jobData.forEach((job, index) => {
           <td>${job.dateApplied}</td>
           <td>${job.activity}</td>
           <td>
-            <button class="edit-btn" data-index="${job.id}" >Edit</button>
+            <button class="edit-btn" data-index="${index}" >Edit</button>
             <button class="delete-btn" data-index="${index}">Delete</button>
           </td>
         </tr>`
@@ -97,27 +94,24 @@ displayedJobInfo.addEventListener("click", (e) => {
 }
 
 if (e.target.classList.contains("edit-btn")){
-jobForm.classList.toggle("hidden")  
-
-addJobApplicationBtn.innerText = "Update Job"
-
-    const jobArrIndex = jobData.findIndex((job) => job.id === e.target.dataset.id);
+  jobForm.classList.toggle("hidden")  
+  const jobArrIndex = parseInt(e.target.dataset.index, 10);
 
   //const editIndex = parseInt(e.target.dataset.index, 10);
-if (jobArrIndex === -1) {
+    if (jobArrIndex !== -1) {
 
-  updatedJobInfo = jobData[jobArrIndex]
+      updatedJobInfo = jobData[jobArrIndex]
 
-  jobTitle.value = updatedJobInfo.jobTitle
-  companyName.value = updatedJobInfo.companyName
-  dateApplied.value = updatedJobInfo.dateApplied
-  activity.value = updatedJobInfo.activity
+      jobtitleInput.value = updatedJobInfo.jobTitle
+      companyNameInput.value = updatedJobInfo.companyName
+      dateAppliedInput.value = updatedJobInfo.dateApplied
+      activityInput.value = updatedJobInfo.activity
 
-  currentEditIndex = jobArrIndex
-}
+      currentEditIndex = jobArrIndex
+        addJobApplicationBtn.innerText = "Update Job"
 
-
-}
+    }
+} 
 
 })
 
