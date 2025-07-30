@@ -83,7 +83,6 @@ cancelFormBtn.addEventListener("click", () => {
 })
 
 // Add Edit btn functionality
-
 // Add Delete btn functionality
 displayedJobInfo.addEventListener("click", (e) => {
 

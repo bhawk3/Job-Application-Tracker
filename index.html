@@ -43,7 +43,11 @@
                     <input type="date" name="dateApplied" id="date-applied-input"/><br>
                     <label for="activity-input">Activity:</label><br>
                     <!-- This actually should probably be a <select> instead of <input> -->
-                    <input type="text" name="activityInput" id="activity-input"/><br>
+                    <select type="text" name="activityInput" id="activity-input">
+                        <option value="no-reply">No Reply</option>
+                        <option value="rejection">Rejection</option>
+                        <option value="interview">Interview!!!</option>
+                    </select><br>
                     
                     <button id="add-job-application-btn" class="btn btn-primary btn-lg px-4 mt-2 me-md-2" type="submit">Add Job Application</button><br>
                     <button class="btn btn-secondary btn-lg px-4 mt-2 me-md-2" id="cancel-form-btn" type="button">Cancel</button>                
@@ -71,7 +75,7 @@
                             <td>Interview Scheduled</td>
                             <td>
                                 <button class="edit-btn">Edit</button>
-                                <button class="delete=btn">Delete</button>
+                                <button class="delete-btn">Delete</button>
                             </td>
                             </tr>
                             <!-- More rows... -->
