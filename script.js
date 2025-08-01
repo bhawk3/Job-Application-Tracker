@@ -8,14 +8,10 @@ const addJobBtn = document.getElementById("add-job-btn");
 const cancelFormBtn = document.getElementById("cancel-form-btn");
 const displayedJobInfo = document.getElementById("displayed-job-info");
 
-const jobData = [];
+const jobData = JSON.parse(localStorage.getItem("jobData")) || [];
 let currentEditIndex = null;
 
-const storedJobs = JSON.parse(localStorage.getItem(jobData));
-if (storedJobs) {
-	jobData.push(...storedJobs);
-	postDataToPage();
-}
+postDataToPage();
 
 // Toggle the form to add new jobs to the list
 addJobBtn.addEventListener("click", () => jobForm.classList.toggle("hidden"));
@@ -58,7 +54,7 @@ const addOrUpdateJob = () => {
 	jobForm.classList.add("hidden");
 };
 
-const postDataToPage = () => {
+function postDataToPage() {
 	//Left off here 07/23
 	displayedJobInfo.innerHTML = "";
 
@@ -75,7 +71,7 @@ const postDataToPage = () => {
           </td>
         </tr>`;
 	});
-};
+}
 
 // Add Close Form btn functionality
 cancelFormBtn.addEventListener("click", () => {
@@ -100,7 +96,7 @@ displayedJobInfo.addEventListener("click", (e) => {
 
 		//const editIndex = parseInt(e.target.dataset.index, 10);
 		if (jobArrIndex !== -1) {
-			updatedJobInfo = jobData[jobArrIndex];
+			let updatedJobInfo = jobData[jobArrIndex];
 
 			jobtitleInput.value = updatedJobInfo.jobTitle;
 			companyNameInput.value = updatedJobInfo.companyName;
