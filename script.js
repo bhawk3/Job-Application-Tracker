@@ -66,8 +66,8 @@ function postDataToPage() {
           <td>${job.dateApplied}</td>
           <td>${job.activity}</td>
           <td>
-            <button class="edit-btn" data-index="${index}" >Edit</button>
-            <button class="delete-btn" data-index="${index}">Delete</button>
+            <button class="btn edit-btn btn-primary" data-index="${index}" >Edit</button>
+            <button class="btn delete-btn" data-index="${index}">Delete</button>
           </td>
         </tr>`;
 	});
