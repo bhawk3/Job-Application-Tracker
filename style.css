@@ -24,7 +24,7 @@ body {
 }
 
 #job-form-content {
-	background-color: #fefefe;
+	background-color: green;
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
@@ -32,6 +32,7 @@ body {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	text-align: center;
 }
 
 .edit-btn,
